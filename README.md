@@ -23,6 +23,7 @@ poetry add 'git+https://github.com/NilsHasNoGithub/embedding_inspector'
 
 Example usage (See `examples` folder for more details):
 ```python
+@lru_cache
 def get_dinov2_model() -> torch.nn.Module:
     return torch.hub.load("facebookresearch/dinov2", "dinov2_vits14")
 
