@@ -141,7 +141,6 @@ def run_embedding_inspection_app(
         + [
             dcc.Graph(
                 id="scatter-plot",
-                # figure={"data": graph_datas, "layout": {"hovermode": "closest"}},
                 figure=fig,
                 style={"height": "50vh"},
             ),
@@ -157,6 +156,7 @@ def run_embedding_inspection_app(
         style={"height": "100%"},
     )
 
+    # Define the callback function to display the image
     @app.callback(
         dash.dependencies.Output("image-display-fixed", "children"),
         [dash.dependencies.Input("scatter-plot", "clickData")],
@@ -168,8 +168,7 @@ def run_embedding_inspection_app(
             )
         else:
             return ""
-
-    # Define the callback function to display the image
+    
     @app.callback(
         dash.dependencies.Output("image-display", "children"),
         [dash.dependencies.Input("scatter-plot", "hoverData")],
