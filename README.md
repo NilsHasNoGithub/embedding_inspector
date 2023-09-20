@@ -2,14 +2,24 @@
 Simple application/library to visualize and inspect TSNE embeddings using Plotly and Dash.
 
 
-## Interface examples
+## Installation
+### `pip`:
+```bash
+pip install 'git+https://github.com/NilsHasNoGithub/embedding_inspector'
+```
+### `pipenv`
+```bash
+pipenv install 'git+https://github.com/NilsHasNoGithub/embedding_inspector#egg=embedding_inspector'
+```
 
-### 2D
-![2d example](media/example_of_app.png)
+### `poetry`
+```bash
+poetry add 'git+https://github.com/NilsHasNoGithub/embedding_inspector'
+```
 
-### 3D
-![3d example](media/example_of_app_3d.png)
 
+
+## Code example
 
 Example usage (See `examples` folder for more details):
 ```python
@@ -63,3 +73,12 @@ run_embedding_inspection_app(
     scatter_fig_kwargs=dict(color_discrete_sequence=["red", "green"], symbol_sequence=['circle', 'cross'], opacity=1.0) # Species is now indicated by green/red, and even/odd idx by circle/cross
 )
 ```
+
+
+## Interface examples
+
+### 2D
+![2d example](media/example_of_app.png)
+
+### 3D
+![3d example](media/example_of_app_3d.png)
