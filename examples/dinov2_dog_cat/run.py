@@ -78,6 +78,11 @@ def main():
         ),  # Species is now indicated by green/red, and even/odd idx by circle/cross
     )
 
+    # Note that embeddings are now computed one by one
+    # You can also precompute the embeddings (in batches) to improve efficiency
+
+    # Just like you can preload images in case of a slow file system
+
 
 if __name__ == "__main__":
     main()
