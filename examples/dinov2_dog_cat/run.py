@@ -29,7 +29,6 @@ def get_dinov2_model() -> torch.nn.Module:
 
 
 def load_image(uid: str) -> pil_img.Image:
-    # print(uid)
     img = pil_img.open(uid)
     img.load()
     return img
