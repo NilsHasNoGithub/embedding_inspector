@@ -1,32 +1,17 @@
 from collections import defaultdict
 from functools import partial
-from typing import (
-    Any,
-    Callable,
-    Collection,
-    Dict,
-    Optional,
-    Sequence,
-    Tuple,
-    TypeVar,
-    Union,
-)
-import click
+from typing import Any, Callable, Dict, Optional, Sequence, Tuple, TypeVar, Union
+
 import dash
-from dash import dcc
-from dash import html
 import numpy as np
-import plotly.graph_objects as go
-import urllib.parse
-from os.path import join as pjoin
-import plotly.io
+import numpy.typing as npt
+import pandas as pd
 import PIL.Image
+import plotly.express as px
+import plotly.io
+from dash import dcc, html
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
-import numpy.typing as npt
-import plotly.express as px
-import pandas as pd
-from sklearn.pipeline import Pipeline
 from tqdm import tqdm
 
 plotly.io.templates.default = "seaborn"
@@ -96,16 +81,19 @@ def run_embedding_inspection_app(
         scatter_fig_kwargs = {}
 
     if dim_reduction_fn is None:
-        dim_reduction_fn = lambda x: TSNE().fit_transform(PCA(n_components=50).fit_transform(x))
+        dim_reduction_fn = lambda x: TSNE().fit_transform(
+            PCA(n_components=50).fit_transform(x)
+        )
 
     #### Create plotting data
-    embeds = np.stack([load_embedding(uid) for uid in tqdm(unique_ids, desc="Extracting embeddings")])
+    embeds = np.stack(
+        [load_embedding(uid) for uid in tqdm(unique_ids, desc="Extracting embeddings")]
+    )
     embeds_reduced = dim_reduction_fn(embeds)
     if embeds_reduced.shape not in [(len(unique_ids), 2), (len(unique_ids), 3)]:
         raise WrongArrayShapeError(
             f"Expected `dim_reduction_fn` to return an array of shape (len(unique_ids), 2/3), but got {embeds_reduced.shape}"
         )
-
 
     two_labels = isinstance(labels[0], tuple)
     is_3d = embeds_reduced.shape[1] == 3

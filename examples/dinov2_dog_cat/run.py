@@ -1,13 +1,14 @@
-from embedding_inspector import run_embedding_inspection_app
+from functools import lru_cache
+from pathlib import Path
+
 import numpy as np
-from sklearn.decomposition import PCA
-from sklearn.manifold import TSNE
+import PIL.Image as pil_img
 import torch
 import torch.nn
-import PIL.Image as pil_img
-from pathlib import Path
-from functools import lru_cache
 import torchvision.transforms as T
+from embedding_inspector import run_embedding_inspection_app
+from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
 
 TRANSFORM = T.Compose(
     [
@@ -54,7 +55,7 @@ def main():
 
     # The app supports 2 labels, 1 for the color and 1 for the shape
     # The second label added here is just to demonstrate the possiblity
-    other_labels = ["even idx" if i %2 == 0 else "odd idx" for i in range(len(labels))]
+    other_labels = ["even idx" if i % 2 == 0 else "odd idx" for i in range(len(labels))]
 
     combined_labels = list(zip(labels, other_labels))
 
@@ -71,7 +72,11 @@ def main():
         dim_reduction_fn=custom_dim_reduction_fn,
         tag="dogs and cats",
         dash_app_run_kwargs=dict(port=5050),
-        scatter_fig_kwargs=dict(color_discrete_sequence=["red", "green"], symbol_sequence=['circle', 'cross'], opacity=1.0) # Species is now indicated by green/red, and even/odd idx by circle/cross
+        scatter_fig_kwargs=dict(
+            color_discrete_sequence=["red", "green"],
+            symbol_sequence=["circle", "cross"],
+            opacity=1.0,
+        ),  # Species is now indicated by green/red, and even/odd idx by circle/cross
     )
 
 
