@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "embedding-inspector"
+version = "0.1.0"
+description = "Ebedding visualization and inspection using Plotly and Dash"
+authors = ["Nils Golembiewski <nilsgolembiewski@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "~3.8.0"
+plotly = "*"
+dash = "*"
+scikit-learn = "*"
+numpy = "*"
+pillow = "*"
+pandas = "*"
+tqdm = "*"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+pytest = "^7.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
