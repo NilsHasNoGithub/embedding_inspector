@@ -61,7 +61,7 @@ def main():
     # By default PCA with 50 components + TSNE with 2 components is used, though this can be modified.
     # 3d is also supported! Though for this example 3d reduces interpretability
     def custom_dim_reduction_fn(x: np.ndarray) -> np.ndarray:
-        return TSNE(n_components=3).fit_transform(PCA(n_components=10).fit_transform(x))
+        return TSNE(n_components=2).fit_transform(PCA(n_components=10).fit_transform(x))
 
     run_embedding_inspection_app(
         unique_ids,
