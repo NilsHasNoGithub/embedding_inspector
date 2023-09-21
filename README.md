@@ -3,7 +3,7 @@ Simple application/library to visualize and inspect TSNE embeddings using Plotly
 
 
 ## Installation
-### `pip`:
+### `pip`
 ```bash
 pip install 'git+https://github.com/NilsHasNoGithub/embedding_inspector'
 ```
